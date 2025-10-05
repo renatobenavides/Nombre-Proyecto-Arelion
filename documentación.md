@@ -4,12 +4,11 @@
 ## 1. Tema, problema y solución
 
 **Tema:**
-Productos que menos se venden
+Identificación de Productos 'Fríos'
 **Problema:**
-
-Tenemos la base de datos desordenada y queremos hallar rapidamente los productos que menos se venden.
+Nuestra base de datos actual está desorganizada, lo que nos impide identificar de manera rápida y eficiente los productos con las ventas más bajas. Esto significa que perdemos tiempo valioso y no podemos tomar decisiones ágiles para mejorar la rentabilidad.
 **Solución:**
-Crear un reporte en Power bi con el catalogo completo donde se vea facilmente los productos menos vendidos.
+Implementaremos un reporte dinámico en Power BI que consolidará el catálogo completo de productos. Este reporte nos permitirá visualizar de forma inmediata y sencilla cuáles son los artículos menos vendidos, facilitando así la toma de decisiones estratégicas.
 
 ## 2. Dataset de referencia:
 
@@ -102,54 +101,91 @@ Gracias a que los datos ya vienen limpios y ordenados desde Python, la tabla mos
 ### 3.3 Pseudocódigo
 
 INICIO
-  // Cargar previamente todos los textos de la documentación en una estructura
-  // de datos, como un diccionario, donde cada opción del menú es una llave.
-  CARGAR textos_documentacion
-
-  // Ejemplo de lo que contendría textos_documentacion:
-  // textos_documentacion['opcion1'] = "TEMA: Productos que menos se venden..."
-  // textos_documentacion['opcion2'] = "DATASET DE REFERENCIA: Fuente: detalle_ventas..."
-  // textos_documentacion['opcion3'] = "ESTRUCTURA POR TABLA: Para productos.csv, las columnas son..."
-  // etc.
-
-MIENTRAS Verdadero:
-  // Mostrar al usuario las opciones disponibles
-  MOSTRAR Menú:
-    1. Tema, problema y solución
-    2. Dataset de referencia
-    3. Estructura por tabla
-    4. Escalas de medición
-    5. Sugerencias y mejoras (Ejemplo)
-    6. Salir
-
-  // Esperar a que el usuario ingrese un número
-  LEER opcion_usuario
-
-  // Evaluar la opción ingresada por el usuario
-  SI opcion_usuario == 1:
-    IMPRIMIR el texto asociado a "Tema, problema y solución"
+  // --- 1. Definir el contenido para cada opción del menú ---
   
-  SI opcion_usuario == 2:
-    IMPRIMIR el texto asociado a "Dataset de referencia"
+  texto_opcion_1 = "TEMA: Productos que menos se venden.\n" +
+                   "PROBLEMA: La base de datos está desordenada y se necesita hallar rápidamente los productos con ventas más bajas.\n" +
+                   "SOLUCIÓN: Crear un reporte en Power BI con el catálogo completo donde se visualicen fácilmente los productos menos vendidos."
 
-  SI opcion_usuario == 3:
-    IMPRIMIR el texto asociado a "Estructura por tabla"
+  texto_opcion_2 = "DATASET DE REFERENCIA - RESUMEN DE FUENTES:\n\n" +
+                   "1. Fuente: detalle_ventas\n" +
+                   "   Definición: Registra cuántas veces se vendió cada producto y la venta a la que está relacionada.\n\n" +
+                   "2. Fuente: productos\n" +
+                   "   Definición: Contiene los detalles y catálogo de cada producto.\n\n" +
+                   "3. Fuente: ventas\n" +
+                   "   Definición: Indica los datos de clientes asociados a cada venta (fecha, email, tipo de pago)."
 
-  SI opcion_usuario == 4:
-    IMPRIMIR el texto asociado a "Escalas de medición"
+  texto_opcion_3 = "ESTRUCTURA POR TABLA:\n\n" +
+                   "Tabla: detalle_ventas (~344 filas)\n" +
+                   "| Campo           | Tipo | Escala  |\n" +
+                   "|-----------------|------|---------|\n" +
+                   "| id_venta        | int  | Nominal |\n" +
+                   "| id_producto     | int  | Nominal |\n" +
+                   "| cantidad        | int  | Razón   |\n\n" +
+                   "Tabla: productos (~101 filas)\n" +
+                   "| Campo           | Tipo | Escala  |\n" +
+                   "|-----------------|------|---------|\n" +
+                   "| id_producto     | int  | Nominal |\n" +
+                   "| nombre_producto | str  | Nominal |\n" +
+                   "| categoria       | str  | Nominal |\n" +
+                   "| precio_unitario | int  | Razón   |\n\n" +
+                   "Tabla: ventas (~121 filas)\n" +
+                   "| Campo           | Tipo | Escala  |\n" +
+                   "|-----------------|------|---------|\n" +
+                   "| id_venta        | int  | Nominal |\n" +
+                   "| fecha           | dt   | Nominal |\n" +
+                   "| id_cliente      | int  | Nominal |\n" +
+                   "| medio_pago      | str  | Nominal |"
 
-  SI opcion_usuario == 5:
-    IMPRIMIR el texto asociado a "Sugerencias y mejoras"
+  texto_opcion_4 = "ESCALAS DE MEDICIÓN - DESCRIPCIÓN Y EJEMPLOS:\n\n" +
+                   "1. Escala Nominal:\n" +
+                   "   Descripción: Se usa para etiquetar variables sin un orden o valor cuantitativo. Son categorías o identificadores.\n" +
+                   "   Ejemplos en el dataset: 'id_producto', 'nombre_producto', 'categoria', 'medio_pago'.\n\n" +
+                   "2. Escala de Razón:\n" +
+                   "   Descripción: Es una escala numérica donde el cero tiene un significado real (ausencia de valor) y las proporciones son válidas (20 es el doble de 10).\n" +
+                   "   Ejemplos en el dataset: 'cantidad', 'precio_unitario'."
 
-  SI opcion_usuario == 6:
-    // Si el usuario elige salir, se rompe el ciclo y el programa termina
-    IMPRIMIR "Saliendo de la documentación..."
-    ROMPER bucle
+  texto_opcion_5 = "SUGERENCIAS Y MEJORAS CON COPILOT:\n" +
+                   "- Separar la documentación en plantillas reutilizables (por ejemplo, textos.py) y desacoplarla del código del menú.\n" +
+                   "- Proveer un modo 'búsqueda' para localizar palabras clave dentro de la documentación (e.g., 'precio', 'escala').\n" +
+                   "- Agregar una opción 'exportar sección' para guardar en .txt/.md lo mostrado por pantalla.\n" +
+                   "- Incluir tests mínimos para el router de opciones (verifica que cada número abra la sección correcta)."
+
+  // --- 2. Lógica del Menú Interactivo ---
   
-  // Opcional: Manejar casos donde el usuario no ingresa un número válido
-  SINO:
-    IMPRIMIR "Opción no válida. Por favor, elige un número del 1 al 6."
-
+  MIENTRAS Verdadero:
+    // Mostrar al usuario las opciones disponibles
+    IMPRIMIR "\n------ MENÚ DE DOCUMENTACIÓN DEL PROYECTO ------"
+    IMPRIMIR "1. Tema, problema y solución"
+    IMPRIMIR "2. Dataset de referencia"
+    IMPRIMIR "3. Estructura por tabla"
+    IMPRIMIR "4. Escalas de medición"
+    IMPRIMIR "5. Sugerencias y mejoras con Copilot"
+    IMPRIMIR "6. Salir"
+    IMPRIMIR "------------------------------------------------"
+    
+    // Esperar a que el usuario ingrese un número
+    LEER opcion_usuario
+    
+    // Evaluar la opción ingresada por el usuario usando una estructura de casos
+    SEGUN opcion_usuario HACER:
+      CASO 1:
+        IMPRIMIR texto_opcion_1
+      CASO 2:
+        IMPRIMIR texto_opcion_2
+      CASO 3:
+        IMPRIMIR texto_opcion_3
+      CASO 4:
+        IMPRIMIR texto_opcion_4
+      CASO 5:
+        IMPRIMIR texto_opcion_5
+      CASO 6:
+        // Si el usuario elige salir, se imprime un mensaje y se rompe el ciclo
+        IMPRIMIR "Saliendo de la documentación..."
+        ROMPER BUCLE
+      DE OTRO MODO:
+        // Manejar casos donde el usuario no ingresa un número válido
+        IMPRIMIR "Opción no válida. Por favor, elige un número del 1 al 6."
 FIN
 
 
