@@ -102,60 +102,86 @@ Gracias a que los datos ya vienen limpios y ordenados desde Python, la tabla mos
 
 ### 3.3 Pseudocódigo
 
-INICIO
-  // --- 1. Definir el contenido para cada opción del menú ---
-  
-  texto_opcion_1 = "TEMA: Productos que menos se venden.\n" +
-                   "PROBLEMA: La base de datos está desordenada y se necesita hallar rápidamente los productos con ventas más bajas.\n" +
-                   "SOLUCIÓN: Crear un reporte en Power BI con el catálogo completo donde se visualicen fácilmente los productos menos vendidos."
+# Documentación del Proyecto
 
-  texto_opcion_2 = "DATASET DE REFERENCIA - RESUMEN DE FUENTES:\n\n" +
-                   "1. Fuente: detalle_ventas\n" +
-                   "   Definición: Registra cuántas veces se vendió cada producto y la venta a la que está relacionada.\n\n" +
-                   "2. Fuente: productos\n" +
-                   "   Definición: Contiene los detalles y catálogo de cada producto.\n\n" +
-                   "3. Fuente: ventas\n" +
-                   "   Definición: Indica los datos de clientes asociados a cada venta (fecha, email, tipo de pago)."
+Este documento detalla la estructura, contenido y lógica de un sistema de consulta de información de ventas.
 
-  texto_opcion_3 = "ESTRUCTURA POR TABLA:\n\n" +
-                   "Tabla: detalle_ventas (~344 filas)\n" +
-                   "| Campo           | Tipo | Escala  |\n" +
-                   "|-----------------|------|---------|\n" +
-                   "| id_venta        | int  | Nominal |\n" +
-                   "| id_producto     | int  | Nominal |\n" +
-                   "| cantidad        | int  | Razón   |\n\n" +
-                   "Tabla: productos (~101 filas)\n" +
-                   "| Campo           | Tipo | Escala  |\n" +
-                   "|-----------------|------|---------|\n" +
-                   "| id_producto     | int  | Nominal |\n" +
-                   "| nombre_producto | str  | Nominal |\n" +
-                   "| categoria       | str  | Nominal |\n" +
-                   "| precio_unitario | int  | Razón   |\n\n" +
-                   "Tabla: ventas (~121 filas)\n" +
-                   "| Campo           | Tipo | Escala  |\n" +
-                   "|-----------------|------|---------|\n" +
-                   "| id_venta        | int  | Nominal |\n" +
-                   "| fecha           | dt   | Nominal |\n" +
-                   "| id_cliente      | int  | Nominal |\n" +
-                   "| medio_pago      | str  | Nominal |"
+---
 
-  texto_opcion_4 = "ESCALAS DE MEDICIÓN - DESCRIPCIÓN Y EJEMPLOS:\n\n" +
-                   "1. Escala Nominal:\n" +
-                   "   Descripción: Se usa para etiquetar variables sin un orden o valor cuantitativo. Son categorías o identificadores.\n" +
-                   "   Ejemplos en el dataset: 'id_producto', 'nombre_producto', 'categoria', 'medio_pago'.\n\n" +
-                   "2. Escala de Razón:\n" +
-                   "   Descripción: Es una escala numérica donde el cero tiene un significado real (ausencia de valor) y las proporciones son válidas (20 es el doble de 10).\n" +
-                   "   Ejemplos en el dataset: 'cantidad', 'precio_unitario'."
+## 1. Contenido de la Documentación
 
-  texto_opcion_5 = "SUGERENCIAS Y MEJORAS CON COPILOT:\n" +
-                   "- Separar la documentación en plantillas reutilizables (por ejemplo, textos.py) y desacoplarla del código del menú.\n" +
-                   "- Proveer un modo 'búsqueda' para localizar palabras clave dentro de la documentación (e.g., 'precio', 'escala').\n" +
-                   "- Agregar una opción 'exportar sección' para guardar en .txt/.md lo mostrado por pantalla.\n" +
-                   "- Incluir tests mínimos para el router de opciones (verifica que cada número abra la sección correcta)."
+A continuación se describen las diferentes secciones de información disponibles en el menú interactivo.
 
-  // --- 2. Lógica del Menú Interactivo ---
-  
-  MIENTRAS Verdadero:
+### Tema, Problema y Solución
+
+* **TEMA:** Productos que menos se venden.
+* **PROBLEMA:** La base de datos está desordenada y se necesita hallar rápidamente los productos con ventas más bajas.
+* **SOLUCIÓN:** Crear un reporte en Power BI con el catálogo completo donde se visualicen fácilmente los productos menos vendidos.
+
+### Dataset de Referencia - Resumen de Fuentes
+
+1.  **Fuente: `detalle_ventas`**
+    * **Definición:** Registra cuántas veces se vendió cada producto y la venta a la que está relacionada.
+
+2.  **Fuente: `productos`**
+    * **Definición:** Contiene los detalles y catálogo de cada producto.
+
+3.  **Fuente: `ventas`**
+    * **Definición:** Indica los datos de clientes asociados a cada venta (fecha, email, tipo de pago).
+
+### Estructura por Tabla
+
+**Tabla: `detalle_ventas` (~344 filas)**
+
+| Campo       | Tipo | Escala  |
+|-------------|------|---------|
+| `id_venta`    | int  | Nominal |
+| `id_producto` | int  | Nominal |
+| `cantidad`    | int  | Razón   |
+
+**Tabla: `productos` (~101 filas)**
+
+| Campo           | Tipo | Escala  |
+|-----------------|------|---------|
+| `id_producto`   | int  | Nominal |
+| `nombre_producto`| str  | Nominal |
+| `categoria`     | str  | Nominal |
+| `precio_unitario`| int  | Razón   |
+
+**Tabla: `ventas` (~121 filas)**
+
+| Campo      | Tipo | Escala  |
+|------------|------|---------|
+| `id_venta`   | int  | Nominal |
+| `fecha`      | dt   | Nominal |
+| `id_cliente` | int  | Nominal |
+| `medio_pago` | str  | Nominal |
+
+### Escalas de Medición - Descripción y Ejemplos
+
+1.  **Escala Nominal:**
+    * **Descripción:** Se usa para etiquetar variables sin un orden o valor cuantitativo. Son categorías o identificadores.
+    * **Ejemplos en el dataset:** `id_producto`, `nombre_producto`, `categoria`, `medio_pago`.
+
+2.  **Escala de Razón:**
+    * **Descripción:** Es una escala numérica donde el cero tiene un significado real (ausencia de valor) y las proporciones son válidas (20 es el doble de 10).
+    * **Ejemplos en el dataset:** `cantidad`, `precio_unitario`.
+
+### Sugerencias y Mejoras con Copilot
+
+* Separar la documentación en plantillas reutilizables (por ejemplo, `textos.py`) y desacoplarla del código del menú.
+* Proveer un modo 'búsqueda' para localizar palabras clave dentro de la documentación (e.g., 'precio', 'escala').
+* Agregar una opción 'exportar sección' para guardar en `.txt`/`.md` lo mostrado por pantalla.
+* Incluir tests mínimos para el router de opciones (verifica que cada número abra la sección correcta).
+
+---
+
+## 2. Lógica del Menú Interactivo (Pseudocódigo)
+
+El siguiente pseudocódigo describe el funcionamiento del menú que presenta la documentación.
+
+```pseudocode
+MIENTRAS Verdadero:
     // Mostrar al usuario las opciones disponibles
     IMPRIMIR "\n------ MENÚ DE DOCUMENTACIÓN DEL PROYECTO ------"
     IMPRIMIR "1. Tema, problema y solución"
@@ -171,24 +197,23 @@ INICIO
     
     // Evaluar la opción ingresada por el usuario usando una estructura de casos
     SEGUN opcion_usuario HACER:
-      CASO 1:
-        IMPRIMIR texto_opcion_1
-      CASO 2:
-        IMPRIMIR texto_opcion_2
-      CASO 3:
-        IMPRIMIR texto_opcion_3
-      CASO 4:
-        IMPRIMIR texto_opcion_4
-      CASO 5:
-        IMPRIMIR texto_opcion_5
-      CASO 6:
-        // Si el usuario elige salir, se imprime un mensaje y se rompe el ciclo
-        IMPRIMIR "Saliendo de la documentación..."
-        ROMPER BUCLE
-      DE OTRO MODO:
-        // Manejar casos donde el usuario no ingresa un número válido
-        IMPRIMIR "Opción no válida. Por favor, elige un número del 1 al 6."
-FIN
+        CASO 1:
+            IMPRIMIR texto_opcion_1
+        CASO 2:
+            IMPRIMIR texto_opcion_2
+        CASO 3:
+            IMPRIMIR texto_opcion_3
+        CASO 4:
+            IMPRIMIR texto_opcion_4
+        CASO 5:
+            IMPRIMIR texto_opcion_5
+        CASO 6:
+            // Si el usuario elige salir, se imprime un mensaje y se rompe el ciclo
+            IMPRIMIR "Saliendo de la documentación..."
+            ROMPER BUCLE
+        DE OTRO MODO:
+            // Manejar casos donde el usuario no ingresa un número válido
+            IMPRIMIR "Opción no válida. Por favor, elige un número del 1 al 6."
 
 
 ### 3.4 Diagrama de flujo:
@@ -197,9 +222,3 @@ Adjuntar imagen del diagrama de flujo y el link del archivo
 `![Diagrama de flujo](diagrama_flujo.png)`
 `[Diagrama de flujo](htttps://www.url-del-archivo.com)`
 
-### 4. Sugerencias y mejoras aplicadas con Copilot
-
-- Separar la documentación en plantillas reutilizables (por ejemplo, textos.py) y desacoplarla del código del menú.
-- Proveer un modo “búsqueda” para localizar palabras clave dentro de la documentación (e.g., “precio”, “escala”).
-- Agregar una opción “exportar sección” para guardar en .txt/.md lo mostrado por pantalla.
-- Incluir tests mínimos para el router de opciones (verifica que cada número abra la sección correcta).
