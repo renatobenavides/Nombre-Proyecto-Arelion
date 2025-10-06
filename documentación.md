@@ -115,7 +115,7 @@ MIENTRAS Verdadero:
             // Manejar casos donde el usuario no ingresa un número válido
             IMPRIMIR "Opción no válida. Por favor, elige un número del 1 al 6."
 
-
+```
 ### 3.4 Diagrama de flujo:
 ![Diagrama del flujo](./menu_diagrama.png)
 
