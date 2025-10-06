@@ -18,7 +18,7 @@ Implementaremos un reporte dinámico en Power BI que consolidará el catálogo c
 detalle_ventas
 
 **Definición:**
-detalle_ventas: Cuantas veces se vendio cada producto y la venta a la que esta relacionada.
+detalle_ventas: Registra cuántas veces se vendió cada producto y la venta a la que está relacionada.
 
 **tabla_ejemplo archivo.csv** ~344 filas
 | Campo            | Tipo | Escala   | 
@@ -34,7 +34,7 @@ detalle_ventas: Cuantas veces se vendio cada producto y la venta a la que esta r
 productos
 
 **Definición:**
-detalle_ventas: Los detalles de cada producto. 
+productos: Contiene los detalles de cada producto. 
 
 **tabla_ejemplo archivo.csv** ~101 filas
 | Campo            | Tipo | Escala   | 
@@ -48,7 +48,7 @@ detalle_ventas: Los detalles de cada producto.
 ventas
 
 **Definición:**
-detalle_ventas: Nos indica los datos de clientes (fecha, mail y tipos de pago)
+ventas: Indica los datos de clientes asociados a cada venta (fecha, email, tipo de pago).
 
 **tabla_ejemplo archivo.csv** ~121filas
 | Campo            | Tipo | Escala   | 
@@ -74,31 +74,7 @@ detalle_ventas: Nos indica los datos de clientes (fecha, mail y tipos de pago)
 6. Salir.
 
 ### 3.2 Pasos
-Paso A: El Trabajo del "Ayudante Inteligente" 🐍 (con Python)
-1. Hallar, regularizar y unir los datos correctos.
-Antes de cualquier cálculo, se realiza un pequeño análisis para entender los datos. Luego, el programa leerá los dos archivos clave: productos.csv y detalle_ventas.csv.
 
-2. Sumar las ventas totales por producto.
-El script revisará todas las transacciones en el archivo detalle_ventas.csv y sumará la cantidad total de unidades vendidas para cada producto.
-
-3. Consolidar todo en una gran lista.
-Se tomará el catálogo completo de productos.csv y se le añadirá una columna con las ventas totales. Es fundamental que, si un producto nunca se vendió, aparezca en esta lista final con un cero en sus ventas para no perderlo de vista.
-
-4. Ordenar y limpiar la lista.
-Una vez que la tabla esté completa, se ordenará de menor a mayor según la cantidad vendida, poniendo los productos "fríos" al principio. También se limpiará cualquier dato para asegurar la calidad del reporte.
-
-5. Guardar la lista final.
-Finalmente, el script guardará esta tabla perfecta y ordenada en un nuevo archivo listo para ser visualizado: reporte_productos_frios.csv.
-
-Paso B: La Visualización en el "Tablero Mágico" 📊 (con Power BI)
-1. Cargar la lista final y procesada.
-Se abrirá Power BI y se importará el archivo reporte_productos_frios.csv, que ya contiene toda la información limpia y calculada por nuestro Ayudante Inteligente.
-
-2. Crear una tabla simple de resultados.
-Dentro del tablero de Power BI, se creará una tabla que mostrará de forma clara el nombre del producto, su categoría y el total de unidades que se vendieron.
-
-3. ¡Ver la solución al instante!
-Gracias a que los datos ya vienen limpios y ordenados desde Python, la tabla mostrará inmediatamente los productos menos vendidos en la parte superior, listos para el análisis y la toma de decisiones.
 
 ### 3.3 Pseudocódigo
 
@@ -141,8 +117,5 @@ MIENTRAS Verdadero:
 
 
 ### 3.4 Diagrama de flujo:
-
-Adjuntar imagen del diagrama de flujo y el link del archivo
-`![Diagrama de flujo](diagrama_flujo.png)`
-`[Diagrama de flujo](htttps://www.url-del-archivo.com)`
+![Diagrama del flujo](./menu_diagrama.png)
 
