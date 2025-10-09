@@ -76,44 +76,25 @@ ventas: Indica los datos de clientes asociados a cada venta (fecha, email, tipo 
 ### 3.2 Pasos
 Objetivo del proceso
 
-El propósito de este procedimiento es identificar los productos con menor rotación de ventas para optimizar la gestión del inventario y apoyar la toma de decisiones estratégicas. Para lograrlo, se combinan herramientas de análisis de datos (Python) y visualización (Power BI), garantizando resultados limpios, precisos y fáciles de interpretar.
+El propósito de esta sección es documentar el funcionamiento del menú interactivo que permite acceder a las diferentes partes del proyecto. Este menú simula una navegación estructurada dentro de una documentación técnica, facilitando al usuario la consulta del tema, dataset, estructura de tablas, escalas de medición y sugerencias de mejora del sistema.
 
-### Paso A: El trabajo del “Ayudante Inteligente” 🐍 (con Python)
+### Paso A: Diseño lógico mediante pseudocódigo
 
-1. Análisis y carga de los datos
-El primer paso consiste en examinar los archivos fuente:
+Antes de implementar el programa en Python, se elaboró un pseudocódigo para representar de manera clara la lógica del flujo del menú. En él, se utiliza una estructura de repetición MIENTRAS Verdadero que mantiene activo el menú hasta que el usuario seleccione la opción “Salir”.
 
-productos.csv, que contiene las columnas: id_producto, nombre_producto, categoría y precio_unitario.
+Cada número ingresado corresponde a una sección del proyecto, y se emplea una estructura condicional SEGÚN...HACER (similar al match o if-elif en Python) para mostrar el contenido correspondiente.
 
-detalle_ventas.csv, que incluye: id_venta, id_producto, cantidad_vendida y fecha_venta.
+El pseudocódigo también incluye el manejo de errores, garantizando que el sistema informe al usuario cuando se introduce una opción inválida. De esta forma, se logra una base lógica robusta y ordenada antes de programar el código definitivo.
 
-Usando la librería pandas, el programa leerá ambos archivos y verificará la consistencia de los datos, como la ausencia de valores nulos o duplicados.
+### Paso B: Implementación práctica en Python
 
-2. Cálculo de las ventas totales por producto
-El script agrupará la información de detalle_ventas.csv por id_producto y sumará la columna cantidad_vendida para obtener el total de unidades vendidas por cada producto. Este cálculo permitirá conocer la participación de cada artículo en las ventas totales.
+A partir del pseudocódigo anterior, se desarrolló un programa modular utilizando funciones en Python para mantener un código limpio y escalable.
 
-3. Consolidación de la información
-A continuación, se realiza una unión (merge) entre el catálogo de productos y los totales de venta. Si un producto no tiene registros de venta, se le asigna el valor 0 en la columna unidades_vendidas, utilizando la función fillna(0). Esto garantiza que todos los productos, incluso los no vendidos, aparezcan en el reporte final.
+La función obtener_textos_documentacion() contiene toda la información que se muestra en el menú, organizada en un diccionario donde las claves son los números del menú y los valores son los textos de cada sección. Esto facilita la actualización o ampliación del contenido sin modificar la lógica principal.
 
-4. Ordenamiento y limpieza final
-La tabla resultante se ordena de menor a mayor según el número de unidades vendidas, ubicando los productos con menor demanda (“productos fríos”) en los primeros lugares. Además, se eliminan espacios, caracteres extraños y cualquier inconsistencia para asegurar la calidad del resultado.
+La función iniciar_menu() implementa el bucle principal (while True), que presenta las opciones al usuario, recibe su selección y muestra la información correspondiente. Además, incluye validaciones para asegurar que solo se acepten números del 1 al 6 y finaliza correctamente cuando se elige la opción “Salir”.
 
-5. Exportación del reporte final
-Finalmente, se guarda el archivo procesado bajo el nombre reporte_productos_frios.csv en la carpeta /output/ del proyecto. Este archivo servirá como insumo principal para la visualización en Power BI.
-
-### Paso B: La visualización en el “Tablero Mágico” 📊 (con Power BI)
-
-1. Importación de datos
-En Power BI, se carga el archivo reporte_productos_frios.csv generado por Python. Dado que el conjunto de datos ya está limpio y estructurado, la importación se realiza sin necesidad de transformaciones adicionales.
-
-2. Creación de la visualización
-Se diseña una tabla interactiva que muestra los campos Nombre del producto, Categoría y Unidades vendidas.
-Luego, se ordena la tabla de forma ascendente por la cantidad vendida para visualizar rápidamente los productos con menor movimiento.
-
-Opcionalmente, se puede agregar un gráfico de barras horizontal para resaltar los productos fríos y facilitar su comparación visual.
-
-3. Resultados y análisis
-Gracias al procesamiento previo en Python, el tablero de Power BI muestra de inmediato los productos con bajas ventas, permitiendo detectar oportunidades para promociones, liquidaciones o ajustes en el inventario.
+El menú funciona como una interfaz simple y funcional para navegar por la documentación del proyecto, permitiendo al usuario revisar cada sección de manera ordenada, intuitiva y adaptable a futuras ampliaciones.
 
 ### 3.3 Pseudocódigo
 
