@@ -3,14 +3,20 @@
 
 ## 1. Tema, problema y solución
 
-**Tema:**
+### Tema:
 Identificación de Productos 'Fríos'
 
-**Problema:**
-Nuestra base de datos actual está desorganizada, lo que nos impide identificar de manera rápida y eficiente los productos con las ventas más bajas. Esto significa que perdemos tiempo valioso y no podemos tomar decisiones ágiles para mejorar la rentabilidad.
+### Problema:
+La falta de organización y análisis en nuestra base de datos de ventas ha generado una **pérdida estimada del 10 % al 15 % en ingresos mensuales**, debido a una mala gestión del inventario y a la ausencia de acciones oportunas sobre los productos con bajo rendimiento.  
+Actualmente no se identifican con claridad los artículos menos vendidos, lo que ocasiona **acumulación de stock**, **costos innecesarios de almacenamiento** y una **disminución en la rentabilidad general del negocio**.
 
-**Solución:**
-Implementaremos un reporte dinámico en Power BI que consolidará el catálogo completo de productos. Este reporte nos permitirá visualizar de forma inmediata y sencilla cuáles son los artículos menos vendidos, facilitando así la toma de decisiones estratégicas.
+### Solución:
+- **Productos más vendidos:** fortalecer su promoción y garantizar su disponibilidad constante.  
+- **Ventas normales:** mantener un control equilibrado, monitoreando su tendencia.  
+- **Menos vendidos:** analizar causas de baja rotación, aplicar descuentos, combos o retirar del catálogo si es necesario.  
+
+Este plan permitirá **priorizar la toma de decisiones**, mejorar la **eficiencia en el manejo del inventario** y reducir las **pérdidas económicas**, logrando una **recuperación estimada del 8 % al 12 % de los ingresos actuales**.
+
 
 ## 2. Dataset de referencia:
 

@@ -5,9 +5,13 @@ def obtener_textos_documentacion():
     """
     textos = {
         '1': ("\n### 1. Tema, problema y solución ###\n"
-              "TEMA: Identificación de Productos 'Fríos'.\n"
-              "\nPROBLEMA: Nuestra base de datos actual está desorganizada, lo que nos impide identificar de manera rápida y eficiente los productos con las ventas más bajas. Esto significa que perdemos tiempo valioso y no podemos tomar decisiones ágiles para mejorar la rentabilidad.\n"
-              "\nSOLUCIÓN: Implementaremos un reporte dinámico en Power BI que consolidará el catálogo completo de productos. Este reporte nos permitirá visualizar de forma inmediata y sencilla cuáles son los artículos menos vendidos, facilitando así la toma de decisiones estratégicas."),
+              "\033[1mTEMA:\033[0m Identificación de Productos 'Fríos'.\n"
+              "\n\033[1mPROBLEMA:\033[0m La falta de organización y análisis en nuestra base de datos de ventas ha generado una \033[1mpérdida estimada del 10 % al 15 % en ingresos mensuales\033[0m, debido a una mala gestión del inventario y a la ausencia de acciones oportunas sobre los productos con bajo rendimiento. Actualmente no se identifican con claridad los artículos menos vendidos, lo que ocasiona \033[1macumulación de stock\033[0m, \033[1mcostos innecesarios de almacenamiento\033[0m y una \033[1mdisminución en la rentabilidad general del negocio\033[0m.\n"
+              "\n\033[1mSOLUCIÓN:\033[0m  Desarrollar un \033[1mplan de estrategias de optimización de ventas\033[0m, basado en la \033[1mclasificación de los productos por categorías de desempeño\033[0m:"
+              "- \033[1mProductos más vendidos:\033[0m fortalecer su promoción y garantizar su disponibilidad constante."
+              "- \033[1mVentas normales:\033[0m mantener un control equilibrado, monitoreando su tendencia."
+              "- \033[1mMenos vendidos:\033[0m analizar causas de baja rotación, aplicar descuentos, combos o retirar del catálogo si es necesario."
+              "Este plan permitirá \033[1mpriorizar la toma de decisiones\033[0m, mejorar la \033[1meficiencia en el manejo del inventario\033[0m y reducir las \033[1mpérdidas económicas\033[0m, logrando una \033[1mrecuperación estimada del 8 % al 12 % de los ingresos actuales\033[0m."),
 
         '2': ("\n### 2. Dataset de referencia ###\n\n"
               "Se utilizan tres fuentes de datos principales:\n\n"
