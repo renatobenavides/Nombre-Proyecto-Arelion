@@ -18,7 +18,7 @@ Implementaremos un reporte dinámico en Power BI que consolidará el catálogo c
 detalle_ventas
 
 **Definición:**
-detalle_ventas: Registra cuántas veces se vendió cada producto y la venta a la que está relacionada.
+Registra cuántas veces se vendió cada producto y la venta a la que está relacionada.
 
 **tabla_ejemplo archivo.csv** ~344 filas
 | Campo            | Tipo | Escala   | 
@@ -34,7 +34,7 @@ detalle_ventas: Registra cuántas veces se vendió cada producto y la venta a la
 productos
 
 **Definición:**
-productos: Contiene los detalles de cada producto. 
+Contiene los detalles de cada producto. 
 
 **tabla_ejemplo archivo.csv** ~101 filas
 | Campo            | Tipo | Escala   | 
@@ -48,7 +48,7 @@ productos: Contiene los detalles de cada producto.
 ventas
 
 **Definición:**
-ventas: Indica los datos de clientes asociados a cada venta (fecha, email, tipo de pago).
+Indica los datos de clientes asociados a cada venta (fecha, email, tipo de pago).
 
 **tabla_ejemplo archivo.csv** ~121filas
 | Campo            | Tipo | Escala   | 
@@ -60,6 +60,21 @@ ventas: Indica los datos de clientes asociados a cada venta (fecha, email, tipo 
 | email            | str  |Nominal   |
 | medio_pago       | str  |Nominal   |
 
+
+**Fuente:**
+cliente
+
+**Definición:**
+Indica todos los datos del cliente
+
+**tabla_ejemplo archivo.csv** ~344 filas
+| Campo            | Tipo | Escala   | 
+|------------------|------|----------| 
+| id_cliente       | int  | Nominal  | 
+| nombre_cliente   | str  | Nominal  | 
+| email            | str  | Nominal  |
+| ciudad           | str  | Nominal  |
+| fecha_alta       | dt   | Nominal  |
 
  
 ## 3. Información, pasos, pseudocódigo y diagrama del programa (Sprint 1)
