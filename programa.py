@@ -80,7 +80,7 @@ def iniciar_menu():
         print("3. Estructura por tabla")
         print("4. Escalas de medición")
         print("5. Sugerencias y mejoras con Copilot")
-        print("6. Salir")
+        print("6. ")
         print("------------------------------------------------")
 
         opcion_usuario = input("Selecciona una opción (1-6): ").strip()
@@ -105,3 +105,5 @@ def iniciar_menu():
 # --- Punto de entrada del programa ---
 if __name__ == "__main__":
     iniciar_menu()
+    
+    ''''''

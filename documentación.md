@@ -7,13 +7,16 @@
 Identificación de Productos 'Fríos'
 
 ### Problema:
-La falta de organización y análisis en nuestra base de datos de ventas ha generado una **pérdida estimada del 10 % al 15 % en ingresos mensuales**, debido a una mala gestión del inventario y a la ausencia de acciones oportunas sobre los productos con bajo rendimiento.  
+La falta de organización y análisis en nuestra base de datos de ventas ha generado una **pérdida estimada del 10 % al 15 % en importes mensuales**, debido a una mala gestión del inventario y a la ausencia de acciones oportunas sobre los productos con bajo rendimiento.  
 Actualmente no se identifican con claridad los artículos menos vendidos, lo que ocasiona **acumulación de stock**, **costos innecesarios de almacenamiento** y una **disminución en la rentabilidad general del negocio**.
+
+Disminucion del importe mensual persivido x porcentaje debido a la baja rotacion de productos.
 
 ### Solución:
 - **Productos más vendidos:** fortalecer su promoción y garantizar su disponibilidad constante.  
 - **Ventas normales:** mantener un control equilibrado, monitoreando su tendencia.  
 - **Menos vendidos:** analizar causas de baja rotación, aplicar descuentos, combos o retirar del catálogo si es necesario.  
+- **Calcular la rotacion de cada producto
 
 Este plan permitirá **priorizar la toma de decisiones**, mejorar la **eficiencia en el manejo del inventario** y reducir las **pérdidas económicas**, logrando una **recuperación estimada del 8 % al 12 % de los ingresos actuales**.
 
