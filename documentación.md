@@ -4,18 +4,20 @@
 ## 1. Tema, problema y solución
 
 ### Tema:
-Identificación de Productos 'Fríos'
+Identificación de Productos que menos se venden
 
-### Problema:
-La falta de organización y análisis en nuestra base de datos de ventas ha generado una **pérdida estimada del 10 % al 15 % en ingresos mensuales**, debido a una mala gestión del inventario y a la ausencia de acciones oportunas sobre los productos con bajo rendimiento.  
-Actualmente no se identifican con claridad los artículos menos vendidos, lo que ocasiona **acumulación de stock**, **costos innecesarios de almacenamiento** y una **disminución en la rentabilidad general del negocio**.
+Problema:
+La base de datos de ventas muestra una baja rotación en algunos productos, lo que impide detectar a tiempo cuáles artículos se venden con poca frecuencia. Esto afecta la eficiencia del negocio y las oportunidades de venta.
 
-### Solución:
-- **Productos más vendidos:** fortalecer su promoción y garantizar su disponibilidad constante.  
-- **Ventas normales:** mantener un control equilibrado, monitoreando su tendencia.  
-- **Menos vendidos:** analizar causas de baja rotación, aplicar descuentos, combos o retirar del catálogo si es necesario.  
+Solución:
+Calcular la rotación de productos: medir cada cuánto tiempo se vende un producto (por ejemplo, en días).
+Clasificar los productos: alta o baja rotación según su frecuencia de venta.
 
-Este plan permitirá **priorizar la toma de decisiones**, mejorar la **eficiencia en el manejo del inventario** y reducir las **pérdidas económicas**, logrando una **recuperación estimada del 8 % al 12 % de los ingresos actuales**.
+Acciones correctivas para equipo comercial:
+Promocionar los productos de baja rotación.
+Ajustar precios o realizar descuentos.
+Revisar el catálogo para retirar artículos con ventas nulas o muy espaciadas.
+Esto permitirá optimizar la gestión del inventario, reducir costos de almacenamiento y mejorar la disponibilidad de productos con alta demanda.
 
 
 ## 2. Dataset de referencia:

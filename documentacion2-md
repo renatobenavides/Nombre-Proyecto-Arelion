@@ -1,0 +1,15 @@
+Problema:
+
+La base de datos de ventas muestra una baja rotación en algunos productos, lo que impide detectar a tiempo cuáles artículos se venden con poca frecuencia. Esto afecta la eficiencia del negocio y las oportunidades de venta.
+
+Solución:
+
+Calcular la rotación de productos: medir cada cuánto tiempo se vende un producto (por ejemplo, en días).
+Clasificar los productos: alta, media o baja rotación según su frecuencia de venta.
+
+Acciones correctivas:
+
+Promocionar los productos de baja rotación.
+Ajustar precios o realizar descuentos.
+Revisar el catálogo para retirar artículos con ventas nulas o muy espaciadas.
+Esto permitirá optimizar la gestión del inventario, reducir costos de almacenamiento y mejorar la disponibilidad de productos con alta demanda.
