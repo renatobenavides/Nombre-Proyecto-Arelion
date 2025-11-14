@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 
+#Esto es por una cuestion estetica
 pd.set_option('display.float_format', '{:,.2f}'.format)
 sns.set(style='whitegrid', palette='muted')
 
@@ -17,13 +18,13 @@ print("Detalle Ventas:", detalle.shape)
 print("Ventas:", ventas.shape)
 
 print("Clientes")
-display(clientes.head())
+print(clientes.head())
 print("Productos")
-display(productos.head())
+print(productos.head())
 print("Detalle de Ventas")
-display(detalle.head())
+print(detalle.head())
 print("Ventas")
-display(ventas.head())
+print(ventas.head())
 
 df = detalle.merge(productos, on='id_producto', how='left', suffixes=('_venta', '_producto'))
 df = df.merge(ventas[['id_venta', 'fecha', 'id_cliente', 'medio_pago']], on='id_venta', how='left')
@@ -32,7 +33,7 @@ df = df.merge(clientes[['id_cliente', 'ciudad']], on='id_cliente', how='left')
 df['fecha'] = pd.to_datetime(df['fecha'])
 
 print("\n--- Estadísticas Generales ---")
-display(df[['cantidad', 'importe', 'precio_unitario_venta']].describe())
+print(df[['cantidad', 'importe', 'precio_unitario_venta']].describe())
 
 # Agrupar ventas por producto
 # Agrupar por producto y sumar cantidad e importe total
@@ -48,6 +49,7 @@ menos_rentables = ventas_por_producto.head(10)
 print(menos_rentables)
 
 # --- Gráfico: Productos que menos facturan ---
+# Distribucion de ventas(importe)
 plt.figure(figsize=(10,6))
 sns.barplot(
     data=menos_rentables,
@@ -63,10 +65,10 @@ plt.show()
 
 
 top10 = ventas_por_producto.head(10)
-display(top10)
+print(top10)
 
 bottom10 = ventas_por_producto.tail(10)
-display(bottom10)
+print(bottom10)
 
 q1 = ventas_por_producto['cantidad'].quantile(0.33)
 q2 = ventas_por_producto['cantidad'].quantile(0.66)
@@ -80,6 +82,7 @@ def clasificar_producto(cant):
 
 ventas_por_producto['categoria_venta'] = ventas_por_producto['cantidad'].apply(clasificar_producto)
 
+#Correlación entre cantidad e importe
 plt.figure(figsize=(8,5))
 sns.countplot(x='categoria_venta', data=ventas_por_producto, palette=['#2b83ba','#abdda4','#fdae61'])
 plt.title('Clasificación de Productos según Nivel de Ventas')
