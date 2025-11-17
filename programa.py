@@ -1,3 +1,8 @@
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
+
 def obtener_textos_documentacion():
     """
     Esta función contiene todo el texto para cada opción del menú.
@@ -107,3 +112,353 @@ if __name__ == "__main__":
     iniciar_menu()
     
     ''''''
+    
+
+
+clientes = pd.read_excel('clientes.xlsx')
+print("Dimension del dataset Clientes:", clientes.shape)
+print("\nPrimeras filas del dataset Clientes:")
+print(clientes.head())
+
+print("\nTipos de datos en el dataset Clientes:")
+print(clientes.dtypes)
+
+
+print("\n++++++++++++Valores nulos por cada columna+++++++++")
+print(clientes.isnull().sum())
+
+print("\n++++++++++++Duplicados por cada columna+++++++++")
+print(clientes.apply(lambda x: x.duplicated().sum()))
+
+print("\n++++++++++++Información del dataset Clientes+++++++++")
+clientes.info()
+
+
+print("\n++++++++++++Descripción del dataset Clientes+++++++++")
+
+print("\n++++++++DESCRIPCIÓN DE VARIABLES NUMÉRICAS+++++++++")
+print(clientes.describe())
+
+print("\n+++++++++DESCRIPCIÓN DE VARIABLES CATEGÓRICAS++++++++")
+print(clientes.describe(include=['object']))
+
+print("\n++++++++++DESCRIPCIÓN DE VARIABLES DE FECHA++++++++++")
+print(clientes.describe(include=['datetime']))
+
+
+"""
+Para interpretar la tabla generada por el método `describe()`:
+COLUMNAS NUMÉRICAS
+| Métrica           | Significado                                                                                                     |
+| ----------------- | --------------------------------------------------------------------------------------------------------------- |
+| **count**         | Cantidad de valores no nulos.                                                                                   |
+| **mean**          | Promedio de los valores.                                                                                        |
+| **std**           | Desviación estándar (qué tanto se dispersan los datos respecto al promedio).                                    |
+| **min**           | Valor mínimo encontrado.                                                                                        |
+| **25%, 50%, 75%** | Cuartiles → dividen la distribución: el 25%, 50% (mediana) y 75% de los datos están por debajo de esos valores. |
+| **max**           | Valor máximo encontrado.                                                                                        |
+
+COLUMNAS CATEGÓRICAS
+| Métrica    | Significado                                     |
+| ---------- | ----------------------------------------------- |
+| **count**  | Total de valores no nulos.                      |
+| **unique** | Cantidad de valores distintos (sin duplicados). |
+| **top**    | Valor más frecuente.                            |
+| **freq**   | Frecuencia (cuántas veces aparece ese “top”).   |
+
+COLUMNAS DE FECHA
+| Métrica    | Significado                                     |
+| ---------- | ----------------------------------------------- |
+| **count**  | cuántas fechas hay.                             |
+| **mean**   | promedio de fechas (punto medio temporal).      |
+| **min**    | primera y última fecha                          |
+"""
+productos = pd.read_excel('CopiaDeProductos.xlsx')
+# === 2. Información general ===
+print("Dimension del dataset Productos:", productos.shape)
+print("\nPrimeras filas del dataset Productos:")
+print(productos.head())
+
+print("\nTipos de datos en el dataset Productos:")
+print(productos.dtypes)
+
+# === 3. Análisis de valores faltantes y duplicados ===
+print("\n++++++++++++VALORES NULOS POR COLUMNA++++++++++++")
+print(productos.isnull().sum())
+
+print("\n++++++++++++DUPLICADOS POR COLUMNA++++++++++++")
+print(productos.apply(lambda x: x.duplicated().sum()))
+
+# === 4. Información del DataFrame ===
+print("\n++++++++++++INFORMACIÓN DEL DATASET PRODUCTOS++++++++++++")
+print(productos.info())
+
+# === 5. Análisis descriptivo general ===
+print("\n++++++++DESCRIPCIÓN DE VARIABLES NUMÉRICAS++++++++")
+print(productos.describe())
+
+print("\n++++++++DESCRIPCIÓN DE VARIABLES CATEGÓRICAS++++++++")
+print(productos.describe(include=['object']))
+
+
+
+
+# === 1. Carga del dataset ===
+detalle_venta = pd.read_excel('detalle_ventas.xlsx')
+
+# === 2. Información general ===
+print("Dimension del dataset Detalle Ventas:", detalle_venta.shape)
+print("\nPrimeras filas del dataset Detalle Ventas:")
+print(detalle_venta.head())
+
+print("\nTipos de datos en el dataset Detalle Ventas:")
+print(detalle_venta.dtypes)
+
+# === 3. Análisis de valores faltantes y duplicados ===
+print("\n++++++++++++VALORES NULOS POR COLUMNA++++++++++++")
+print(detalle_venta.isnull().sum())
+
+print("\n++++++++++++DUPLICADOS POR COLUMNA++++++++++++")
+print(detalle_venta.apply(lambda x: x.duplicated().sum()))
+
+# === 4. Información del DataFrame ===
+print("\n++++++++++++INFORMACIÓN DEL DATASET DETALLE VENTAS++++++++++++")
+print(detalle_venta.info())
+
+# === 5. Análisis descriptivo general ===
+print("\n++++++++DESCRIPCIÓN DE VARIABLES NUMÉRICAS++++++++")
+print(detalle_venta.describe())
+
+print("\n++++++++DESCRIPCIÓN DE VARIABLES CATEGÓRICAS++++++++")
+print(detalle_venta.describe(include=['object']))
+
+
+
+# === 1. Carga del dataset ===
+ventas = pd.read_excel('ventas.xlsx')
+
+
+
+# === 2. Información general ===
+print("Dimension del dataset Ventas:", ventas.shape)
+print("\nPrimeras filas del dataset Ventas:")
+print(ventas.head())
+
+print("\nTipos de datos en el dataset Ventas:")
+print(ventas.dtypes)
+
+# === 3. Análisis de valores faltantes y duplicados ===
+print("\n++++++++++++VALORES NULOS POR COLUMNA++++++++++++")
+print(ventas.isnull().sum())
+
+print("\n++++++++++++DUPLICADOS POR COLUMNA++++++++++++")
+print(ventas.apply(lambda x: x.duplicated().sum()))
+
+# === 4. Información del DataFrame ===
+print("\n++++++++++++INFORMACIÓN DEL DATASET VENTAS++++++++++++")
+print(ventas.info())
+
+# === 5. Análisis descriptivo general ===
+print("\n++++++++DESCRIPCIÓN DE VARIABLES NUMÉRICAS++++++++")
+print(ventas.describe())
+
+print("\n++++++++DESCRIPCIÓN DE VARIABLES CATEGÓRICAS++++++++")
+print(ventas.describe(include=['object']))
+
+
+
+df = detalle_venta.merge(productos, on='id_producto', how='left', suffixes=('_venta', '_producto'))
+df = df.merge(ventas[['id_venta', 'fecha', 'id_cliente', 'medio_pago']], on='id_venta', how='left')
+df = df.merge(clientes[['id_cliente', 'ciudad']], on='id_cliente', how='left')
+
+df = pd.get_dummies(df, columns=['ciudad'], prefix='ciudad')
+
+df = pd.get_dummies(df, columns=['medio_pago'], prefix='medio_pago')
+df['fecha'] = pd.to_datetime(df['fecha'])
+
+# OUTLIDERS 
+
+def detectar_outliers(col):
+    q1 = col.quantile(0.25)
+    q3 = col.quantile(0.75)
+    iqr = q3 - q1
+    limite_inf = q1 - 1.5 * iqr
+    limite_sup = q3 + 1.5 * iqr
+    return (col < limite_inf) | (col > limite_sup)
+
+df['outlier'] = detectar_outliers(df['cantidad'])
+df = df[df['outlier'] == False].copy()
+
+
+
+df = df.sort_values(by=['nombre_producto_venta', 'fecha'])
+
+# Calcular diferencia en días entre ventas consecutivas del mismo producto
+df['rotacion_dias'] = df.groupby('nombre_producto_venta')['fecha'].diff().dt.days
+#groupby('nombre_producto_venta') ->Junta todas las ventas del mismo producto en un solo grupo.
+# ['fecha'] ->Selecciona la columna de fechas dentro de cada grupo.
+#.diff() ->Resta fecha actual – fecha anterior
+# .dt.days ->Convierte la diferencia de tiempo a días
+df['rotacion_dias'] = df['rotacion_dias'].fillna(0)
+
+
+df['mes'] = df['fecha'].dt.to_period('M')
+importe_mensual = df.groupby(['mes'])['importe'].sum().reset_index()
+
+
+importe_mensual['variacion_%'] = importe_mensual['importe'].pct_change() * 100
+
+
+
+
+plt.figure(figsize=(10,5))
+sns.histplot(
+    data=df,
+    x='rotacion_dias',
+    bins=40,
+    kde=True,
+    color='steelblue'
+)
+
+plt.title('Distribución de la Rotación de Productos')
+plt.xlabel('Días entre ventas (rotación)')
+plt.ylabel('Frecuencia')
+plt.tight_layout()
+plt.show()
+
+
+
+sns.scatterplot(data=df, x='rotacion_dias', y='importe', hue='categoria')
+plt.title('Relación entre rotación y monto vendido')
+plt.show()
+
+
+
+# Agrupar ventas por producto
+# Agrupar por producto y sumar cantidad e importe total
+ventas_por_producto = (
+    df.groupby('nombre_producto_venta')[['cantidad', 'importe']]
+      .sum()
+      .reset_index()
+      .sort_values(by='importe', ascending=True)
+)
+
+# Tomamos los 10 que menos plata generaron
+menos_rentables = ventas_por_producto.head(10)
+print(menos_rentables)
+
+# --- Gráfico: Productos que menos facturan ---
+plt.figure(figsize=(10,6))
+sns.barplot(
+    data=menos_rentables,
+    x='importe',
+    y='nombre_producto_venta',
+    palette='Reds_r'
+)
+plt.title('Top 10 Productos que Menos Ingresos Generaron')
+plt.xlabel('Importe Total ($)')
+plt.ylabel('Producto')
+plt.tight_layout()
+plt.show()
+
+
+
+# Top 10 menos rentables
+ventas_por_producto = (
+    df.groupby('nombre_producto_venta')[['cantidad', 'importe']]
+      .sum()
+      .reset_index()
+      .sort_values(by='importe', ascending=True)
+)
+
+menos_rentables = ventas_por_producto.head(5)
+
+lista_menos_vendidos = menos_rentables['nombre_producto_venta'].tolist()
+
+# Filtrar el dataframe original para graficar en el tiempo
+df_menos_vendidos_tiempo = df[df['nombre_producto_venta'].isin(lista_menos_vendidos)]
+
+
+
+
+# Agrupar por mes y producto
+ventas_mensuales_menos = (
+    df_menos_vendidos_tiempo
+    .groupby(['mes', 'nombre_producto_venta'])['cantidad']
+    .sum()
+    .reset_index()
+)
+
+plt.figure(figsize=(12, 6))
+sns.barplot(
+    data=ventas_mensuales_menos,
+    x='mes',
+    y='cantidad',
+    hue='nombre_producto_venta'
+)
+
+plt.title('Cantidad vendida por mes - 5 productos menos vendidos')
+plt.xlabel('Mes')
+plt.ylabel('Cantidad')
+plt.legend(title="Producto", bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.tight_layout()
+plt.show()
+
+
+
+
+# 1. Ordena los productos por ingreso total
+orden_productos = (
+    menos_rentables.sort_values(by="importe", ascending=True)['nombre_producto_venta']
+)
+
+# 2. Filtra y ordena el DataFrame original
+df_menos_vendidos_tiempo = (
+    df[df['nombre_producto_venta'].isin(lista_menos_vendidos)]
+    .assign(
+        producto_orden=lambda x: x['nombre_producto_venta'].map(
+            {p: i for i, p in enumerate(orden_productos)}
+        )
+    )
+    .sort_values(by=['producto_orden', 'fecha'])
+    .drop(columns='producto_orden')
+)
+
+plt.figure(figsize=(10, 6))
+
+sns.scatterplot(
+    data=df_menos_vendidos_tiempo,
+    x='rotacion_dias',
+    y='importe',
+    hue='nombre_producto_venta',   # para distinguir cada producto
+    palette='tab10'
+)
+
+plt.title('Relación entre rotación y monto vendido (5 productos menos vendidos)')
+plt.xlabel('rotación_dias')
+plt.ylabel('importe')
+plt.legend(title='Producto', bbox_to_anchor=(1.05, 1), loc='upper left')
+plt.tight_layout()
+plt.show()
+
+
+
+
+# Seleccionar solo columnas numéricas del subconjunto
+numericas_menos = df_menos_vendidos_tiempo.select_dtypes(include=['int64','float64'])
+
+# Matriz de correlación
+corr_menos = numericas_menos.corr()
+
+plt.figure(figsize=(10,6))
+sns.heatmap(
+    corr_menos,
+    annot=True,
+    cmap='coolwarm',
+    fmt=".2f",
+    linewidths=0.5
+)
+
+plt.title('Mapa de calor de correlaciones - 5 productos menos vendidos')
+plt.tight_layout()
+plt.show()
