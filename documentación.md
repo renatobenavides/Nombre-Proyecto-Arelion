@@ -13,6 +13,22 @@ Solución:
 Calcular la rotación de productos: medir cada cuánto tiempo se vende un producto (por ejemplo, en días).
 Clasificar los productos: alta o baja rotación según su frecuencia de venta.
 
+Objetivo:
+Creación de modelo de machine learning que va a clasificar si el producto es de baja o alta rotacion
+
+Algoritmo elegido:
+Algoritmo de clasificación
+
+Entradas:
+- Campos (features) calculados de los productos
+
+Salida:
+- Booleano que nos indicará si el producto tiene alta  o baja rotación
+
+Metricas:
+- Metricas para algoritmos de clasificacion F1 score (agregar más)
+
+
 Acciones correctivas para equipo comercial:
 Promocionar los productos de baja rotación.
 Ajustar precios o realizar descuentos.
