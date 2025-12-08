@@ -26,7 +26,7 @@ Salida:
 - Booleano que nos indicará si el producto tiene alta  o baja rotación
 
 Metricas:
-- Metricas para algoritmos de clasificacion F1 score (agregar más)
+- Metricas para algoritmos de clasificacion F1 score, presicion, Recall, Matriz de confusion. 
 
 
 Acciones correctivas para equipo comercial:
@@ -141,40 +141,117 @@ El siguiente pseudocódigo describe el funcionamiento del menú que presenta la 
 
 ```pseudocode
 MIENTRAS Verdadero:
-    // Mostrar al usuario las opciones disponibles
-    IMPRIMIR "\n------ MENÚ DE DOCUMENTACIÓN DEL PROYECTO ------"
-    IMPRIMIR "1. Tema, problema y solución"
-    IMPRIMIR "2. Dataset de referencia"
-    IMPRIMIR "3. Estructura por tabla"
-    IMPRIMIR "4. Escalas de medición"
-    IMPRIMIR "5. Sugerencias y mejoras con Copilot"
-    IMPRIMIR "6. Salir"
-    IMPRIMIR "------------------------------------------------"
-    
-    // Esperar a que el usuario ingrese un número
-    LEER opcion_usuario
-    
-    // Evaluar la opción ingresada por el usuario usando una estructura de casos
-    SEGUN opcion_usuario HACER:
-        CASO 1:
-            IMPRIMIR texto_opcion_1
-        CASO 2:
-            IMPRIMIR texto_opcion_2
-        CASO 3:
-            IMPRIMIR texto_opcion_3
-        CASO 4:
-            IMPRIMIR texto_opcion_4
-        CASO 5:
-            IMPRIMIR texto_opcion_5
-        CASO 6:
-            // Si el usuario elige salir, se imprime un mensaje y se rompe el ciclo
-            IMPRIMIR "Saliendo de la documentación..."
-            ROMPER BUCLE
-        DE OTRO MODO:
-            // Manejar casos donde el usuario no ingresa un número válido
-            IMPRIMIR "Opción no válida. Por favor, elige un número del 1 al 6."
+    Mostrar menu
+    Leer opcion_usuario
 
+    SEGUN opcion_usuario HACER:
+        CASO 1..5: mostrar textos
+        CASO 6..10: ejecutar funciones de graficos o modelo
+        CASO 11: salir
+        OTRO: mostrar error
 ```
 ### 3.4 Diagrama de flujo:
-![Diagrama del flujo](./menu_diagrama.png)
+![Diagrama del flujo](./menu_diagrama.png) <-- Hay q modificar esto 
 
+### 4. Graficos generados
+
+- Distribucion de rotacion
+- Productos menos rentables
+- Series mensuales de productos menos vendidos
+- Scatter rotacion vs importe
+
+## 5. Modelo de machine learning
+
+#### Objetivo del modelo (predecir o clasificar)
+
+El objetivo del modelo es clasificar los productos en dos categorias:
+
+- Alta rotacion
+- Baja rotacion
+
+Segun su comportamiento de ventas dentro del periodo analizado.
+
+
+Se utiliza regresion logistica para clasificar productos segun su rotacion.
+Incluye:
+
+- Split train/test
+- Escalado de variables
+- Precision y recall
+- Matriz de confusion
+- Curva ROC + AUC
+
+- Algoritmo elegido y justificacion
+
+Se utiliza un algoritmo de clasificacion supervisada. Este tipo de algoritmos permite asignar una categoria (alta/baja rotacion) a cada producto en base a las features calculadas.
+
+La eleccion se justifica porque:
+
+- La salida es binaria.
+
+- Permite evaluar el desempeño con metricas especificas como F1, precision y recall.
+
+- Es adecuado para conjuntos de datos pequeños como el presente.
+
+
+### Entradas (X) y salida (y)
+
+X (features):
+
+- Frecuencia de venta por producto.
+- Dias promedio entre ventas.
+- Cantidad total vendida.
+- Precio unitario.
+- Variables derivadas de las tablas de detalle_ventas, productos y ventas.
+
+y (target):
+
+- 1 = Alta rotacion.
+- 0 = Baja rotacion.
+
+### Metricas de evaluacion
+
+Se utilizan metricas propias de problemas de clasificacion:
+
+- Precision
+- Recall
+- F1-score (principal)
+- Matriz de confusion: Estas permiten evaluar correctamente modelos desbalanceados, como suele ocurrir cuando hay pocos productos de alta rotacion.
+
+### Modelo ML implementado
+
+Se implemento un modelo clasificador (ej: Logistic Regression, Decision Tree o similar segun la version del .py). El codigo incluye:
+
+- Preparacion de features.
+- Normalizacion o escalado cuando corresponde.
+- Entrenamiento del modelo.
+- Evaluacion con las metricas anteriores.
+
+
+### Division train/test y entrenamiento
+
+El dataset se divide tipicamente en:
+- 80% entrenamiento
+- 20% test
+
+El entrenamiento se realiza sobre las features X y el target y, generando luego predicciones para la muestra de test.
+
+### Predicciones y metricas calculadas
+
+El modelo genera:
+
+- Predicciones para cada producto.
+- Matriz de confusion.
+- Valores de precision, recall y F1.
+
+Estos resultados se muestran en pantalla desde el .py actualizado.
+
+### Resultados visualizados en graficos
+
+El programa incluye visualizacion mediante graficos, tales como:
+
+- Distribucion de categorias (alta vs baja rotacion).
+- Importancia de features.
+- Grafico de confusion.
+
+Estos graficos permiten entender mejor el desempeno y comportamiento del modelo.
